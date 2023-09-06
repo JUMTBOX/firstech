@@ -13,10 +13,10 @@ export default function InputForm({ setResult }: { setResult: Function }) {
 
     if (textRef.current !== null) {
       getKorPronounce(textRef.current?.value).then((res) => setResult(res));
-      // textRef.current.value = "";
     }
   };
 
+  //키보드 눌러도 제출
   const onKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter") {
       handleSubmit();
