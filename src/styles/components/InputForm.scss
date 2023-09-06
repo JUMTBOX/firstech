@@ -1,0 +1,33 @@
+.inputForm_wrapper {
+  width: 100%;
+  height: fit-content;
+  padding: 2em 0;
+  form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 4em;
+    textarea {
+      width: 60%;
+      padding: 0.8em 1em;
+    }
+    button {
+      width: 12em;
+      height: 3em;
+      background: none;
+      border: none;
+      box-shadow: 0 0.1em 0.3em 0 #c0c0c0ce;
+      padding: 0.3em 0.5em;
+      border-radius: 8px;
+      &:focus {
+        border: none;
+        outline: none;
+      }
+      &:hover {
+        cursor: pointer;
+        background-color: #d1d1d1c9;
+      }
+    }
+  }
+}

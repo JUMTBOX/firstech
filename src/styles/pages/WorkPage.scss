@@ -1,0 +1,34 @@
+.WorkPage_container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .WorkPage_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 80%;
+    height: 80%;
+    max-width: 1000px;
+    background-color: white;
+    padding: 1.5em 2.5em;
+    border-radius: 15px;
+    box-shadow: 0 0.1em 0.3em 0 #717171;
+    opacity: 1;
+    .WorkPage_contentBox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 50%;
+      max-height: 100%;
+      padding: 1em 0;
+      textarea {
+        width: 90%;
+        height: 80%;
+        padding: 1em 2em;
+      }
+    }
+  }
+}
