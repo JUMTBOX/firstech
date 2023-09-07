@@ -1,8 +1,9 @@
-import React, { useRef } from "react";
+import React, { useState, useRef } from "react";
 import { getKorPronounce } from "../requestHooks/request";
 import "../styles/components/InputForm.css";
 
-export default function InputForm({ setResult }: { setResult: Function }) {
+export default function InputForm() {
+  const [result, setResult] = useState<string>("");
   const textRef = useRef<HTMLTextAreaElement>(null);
   const btnRef = useRef<HTMLButtonElement>(null);
 
@@ -25,13 +26,16 @@ export default function InputForm({ setResult }: { setResult: Function }) {
   };
 
   return (
-    <div className="inputForm_wrapper">
+    <div className="inputForm_container">
       <form action="/">
         <textarea ref={textRef} onKeyDown={onKeyDown} />
         <button onClick={handleSubmit} ref={btnRef}>
           텍스트 치환하기
         </button>
       </form>
+      <div className="inputForm_contentBox">
+        <textarea defaultValue={result} />
+      </div>
     </div>
   );
 }

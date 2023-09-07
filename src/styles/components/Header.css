@@ -1,0 +1,32 @@
+.header_container {
+  width: 100%;
+  height: 3.5em;
+  color: white;
+  background-color: #3498db;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  padding: 0 1em;
+  box-sizing: border-box;
+}
+.header_container .headerwrapper {
+  width: 100%;
+  max-width: 1000px;
+  height: inherit;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+.header_container .headerwrapper .menu_nav {
+  width: 15%;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.header_container .headerwrapper .menu_nav a {
+  color: white;
+  border: none;
+  background: none;
+  text-decoration: none;
+}/*# sourceMappingURL=Header.css.map */

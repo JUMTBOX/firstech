@@ -6,3 +6,17 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+#root {
+  background: radial-gradient(
+    at 20% 125%,
+    #feda78b9 20%,
+    #e23468ad 60%,
+    #ac2bb3a2 90%
+  );
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
