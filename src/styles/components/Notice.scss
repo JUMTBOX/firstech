@@ -3,14 +3,44 @@
   height: 100%;
   .notice_wrapper {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100%;
+    gap: 1em;
     table {
-      width: 80%;
-      border-spacing: 1px;
-      // color: #dedede;
+      width: 90%;
+      border-collapse: collapse;
+      border-color: #bcbcbc;
+      tr {
+        line-height: 2.5em;
+      }
+    }
+    .btn_wrapper {
+      display: flex;
+      justify-content: flex-end;
+      width: 90%;
+      gap: 1.25em;
+      button {
+        width: 8%;
+        height: 1.7em;
+        font-size: 1em;
+        font-weight: 500;
+        border: none;
+        border-radius: 8px;
+        &:hover {
+          transform: scale(0.99);
+          cursor: pointer;
+        }
+      }
+      .notice_subBtn {
+        color: white;
+        background-color: #3498db;
+      }
+      .notice_delBtn {
+        background-color: #bcbcbc;
+      }
     }
   }
 }

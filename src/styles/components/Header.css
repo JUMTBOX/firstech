@@ -13,7 +13,7 @@
   max-width: 1000px;
   height: inherit;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
 }
 .header_container .headerwrapper .menu_nav {
