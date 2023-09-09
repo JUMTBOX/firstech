@@ -13,14 +13,13 @@
 }
 .login_container .login_wrapper form {
   width: 50%;
-  height: 90%;
+  height: 60%;
   max-width: 500px;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding-top: 3em;
   border-radius: 15px;
   gap: 2.5em;
 }
