@@ -1,10 +1,5 @@
 import axios from "axios";
-import {
-  useQuery,
-  useQueryClient,
-  useMutation,
-  UseQueryResult,
-} from "@tanstack/react-query";
+import { useQuery, UseQueryResult } from "@tanstack/react-query";
 
 export interface Notice {
   article_id: number | null;
@@ -21,13 +16,29 @@ const getKorPronounce = async (text: string): Promise<string> => {
 };
 
 const getFakeData = async (): Promise<Notice[]> => {
-  const { data } = await axios.get("http://localhost:8080/notice");
+  const { data } = await axios.get("/notices");
 
   return data;
 };
+
+const postFakeData = async (data?: Notice): Promise<number> => {
+  const { status } = await axios.post("/notices", {
+    data: data,
+  });
+  return status;
+};
+
+const deleteFakeData = async (data: string): Promise<number> => {
+  const { status } = await axios.post("/notices/delete", {
+    data: data,
+  });
+  return status;
+};
+
+//////////////////////////////////////////////////////////
 
 const useGetFakeData = (): UseQueryResult<Notice[]> => {
   return useQuery(["fake"], () => getFakeData());
 };
 
-export { getKorPronounce, useGetFakeData };
+export { getKorPronounce, useGetFakeData, postFakeData, deleteFakeData };

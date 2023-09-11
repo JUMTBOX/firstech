@@ -8,12 +8,13 @@ body {
 }
 
 #root {
-  background: radial-gradient(
+  /* background: radial-gradient(
     at 20% 125%,
     #feda78b9 20%,
     #e23468ad 60%,
     #ac2bb3a2 90%
-  );
+  ); */
+  background-color: #8d8f90dc;
   width: 100vw;
   height: 100vh;
   display: flex;

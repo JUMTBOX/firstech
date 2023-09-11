@@ -1,21 +1,35 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { BsTrash } from "react-icons/bs";
+import { postFakeData } from "../requestHooks/request";
 import "../styles/pages/WriteNoticePage.css";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export default function WriteNoticePage() {
   const tableRef = useRef<any>([]);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const trigger = useMutation(postFakeData, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["fake"]);
+      navigate("/notice");
+    },
+  });
 
   const deleteFile = () => {
     tableRef.current[1].value = "";
   };
 
   const handleSubmit = () => {
-    // const title = tableRef.current[0].value;
-    // const file = tableRef.current[1].value;
-    // const content = tableRef.current[2].value;
-    //글 등록 비동기 요청
+    const data = {
+      article_id: 3,
+      title: tableRef.current[0].value,
+      author: "관리자",
+      content: tableRef.current[2].value,
+      file: tableRef.current[1].value,
+      date: `2023-09-11`,
+    };
+    trigger.mutate(data);
   };
 
   return (

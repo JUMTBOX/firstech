@@ -45,6 +45,10 @@
     ]
   },
   "devDependencies": {
+    "msw": "^1.3.0",
     "scss": "^0.2.4"
+  },
+  "msw": {
+    "workerDirectory": "..\\..\\..\\..\\..\\public"
   }
 }
