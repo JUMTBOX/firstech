@@ -37,7 +37,7 @@ export default function WriteNoticePage() {
             <td style={{ backgroundColor: "#d1cfcf" }}>작성자</td>
             <td>관리자</td>
           </tr>
-          <tr style={{ height: "10%" }}>
+          <tr style={{ height: "15%" }}>
             <td style={{ backgroundColor: "#d1cfcf" }}>첨부파일</td>
             <td
               style={{
@@ -59,7 +59,7 @@ export default function WriteNoticePage() {
               </button>
             </td>
           </tr>
-          <tr style={{ height: "70%" }}>
+          <tr style={{ height: "65%" }}>
             <td style={{ backgroundColor: "#d1cfcf" }}>내용</td>
             <td>
               <textarea

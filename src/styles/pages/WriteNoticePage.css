@@ -14,6 +14,9 @@
 .writeNotice_container table .title_input {
   width: 90%;
   height: 50%;
+  line-height: 1.2em;
+  padding: 0.2em 0.8em;
+  box-sizing: border-box;
   resize: none;
 }
 .writeNotice_container table .file_input {

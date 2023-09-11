@@ -63,7 +63,7 @@ export default function Table({ data }: { data: Notice[] }) {
           className="notice_subBtn"
           onClick={() => navigate("/notice/write")}
         >
-          글쓰기
+          등록
         </button>
         <button className="notice_delBtn">삭제</button>
       </div>

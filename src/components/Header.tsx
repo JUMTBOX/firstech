@@ -8,6 +8,11 @@ export default function Header() {
   return (
     <div className="header_container">
       <div className="headerwrapper">
+        <div className="logo">
+          <Link to={"/"}>
+            <p>Text Trade Tool</p>
+          </Link>
+        </div>
         <nav className="menu_nav">
           <Link to={"/"}>
             <AiOutlineHome size={"2em"} />

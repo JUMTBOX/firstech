@@ -38,6 +38,7 @@
   cursor: pointer;
 }
 .notice_container .notice_wrapper .btn_wrapper .notice_subBtn {
+  font-size: 1em;
   color: white;
   background-color: #3498db;
 }

@@ -1,9 +1,11 @@
 import React, { useState, useRef } from "react";
 import { getKorPronounce } from "../requestHooks/request";
+import History from "./History";
 import "../styles/components/InputForm.css";
 
 export default function InputForm() {
   const [result, setResult] = useState<string>("");
+  const [isClicked, setIsCliked] = useState<boolean>(false);
   const textRef = useRef<HTMLTextAreaElement>(null);
   const btnRef = useRef<HTMLButtonElement>(null);
 
@@ -36,6 +38,13 @@ export default function InputForm() {
       <div className="inputForm_contentBox">
         <textarea defaultValue={result} />
       </div>
+      <button
+        className="floating_btn"
+        onClick={() => setIsCliked((cur) => !cur)}
+      >
+        History
+      </button>
+      <History log={result} isClicked={isClicked} />
     </div>
   );
 }
