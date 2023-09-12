@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Notice, deleteFakeData } from "../requestHooks/request";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
@@ -26,6 +26,7 @@ export default function Table({ data }: { data: Notice[] }) {
   let empty: Notice = {
     article_id: null,
     title: "",
+    content: "",
     author: "",
     date: "",
   };
@@ -51,7 +52,9 @@ export default function Table({ data }: { data: Notice[] }) {
                   />
                 </td>
                 <td>{el.article_id}</td>
-                <td>{el.title}</td>
+                <td>
+                  <Link to={`/notice/${el.article_id}`}>{el.title}</Link>
+                </td>
                 <td>{el.author}</td>
                 <td>{el.date}</td>
               </tr>

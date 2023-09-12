@@ -1,21 +1,28 @@
 import React, { useState, useRef } from "react";
-import { getKorPronounce } from "../requestHooks/request";
-import History from "./History";
+import { postHistory } from "../requestHooks/request";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import "../styles/components/InputForm.css";
 
 export default function InputForm() {
   const [result, setResult] = useState<string>("");
-  const [isClicked, setIsCliked] = useState<boolean>(false);
   const textRef = useRef<HTMLTextAreaElement>(null);
-  const btnRef = useRef<HTMLButtonElement>(null);
+
+  const queryClient = useQueryClient();
+
+  const { mutateAsync } = useMutation(postHistory, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["history"]);
+    },
+  });
 
   const handleSubmit = (e?: React.FormEvent<HTMLButtonElement>) => {
     if (e !== undefined) {
       e.preventDefault();
     }
-
+    console.log("실행됨");
     if (textRef.current !== null) {
-      getKorPronounce(textRef.current?.value).then((res) => setResult(res));
+      setResult(`${textRef.current?.value} 변환`);
+      mutateAsync(`${textRef.current?.value}변환 `);
     }
   };
 
@@ -23,7 +30,9 @@ export default function InputForm() {
   const onKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter") {
       handleSubmit();
-      btnRef.current?.focus();
+      if (textRef.current !== null) {
+        textRef.current.value = "";
+      }
     }
   };
 
@@ -31,20 +40,11 @@ export default function InputForm() {
     <div className="inputForm_container">
       <form action="/">
         <textarea ref={textRef} onKeyDown={onKeyDown} />
-        <button onClick={handleSubmit} ref={btnRef}>
-          텍스트 치환하기
-        </button>
+        <button onClick={handleSubmit}>변환</button>
       </form>
       <div className="inputForm_contentBox">
         <textarea defaultValue={result} />
       </div>
-      <button
-        className="floating_btn"
-        onClick={() => setIsCliked((cur) => !cur)}
-      >
-        History
-      </button>
-      <History log={result} isClicked={isClicked} />
     </div>
   );
 }

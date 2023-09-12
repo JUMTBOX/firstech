@@ -19,6 +19,9 @@
 .notice_container .notice_wrapper table tr {
   line-height: 2.5em;
 }
+.notice_container .notice_wrapper table a {
+  text-decoration: none;
+}
 .notice_container .notice_wrapper .btn_wrapper {
   display: flex;
   justify-content: flex-end;

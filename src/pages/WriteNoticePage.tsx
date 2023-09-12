@@ -9,7 +9,7 @@ export default function WriteNoticePage() {
   const tableRef = useRef<any>([]);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const trigger = useMutation(postFakeData, {
+  const { mutateAsync } = useMutation(postFakeData, {
     onSuccess: () => {
       queryClient.invalidateQueries(["fake"]);
       navigate("/notice");
@@ -21,15 +21,19 @@ export default function WriteNoticePage() {
   };
 
   const handleSubmit = () => {
+    let year = new Date().getFullYear();
+    let month = new Date().getMonth();
+    let day = new Date().getDay();
+
     const data = {
       article_id: 3,
       title: tableRef.current[0].value,
       author: "관리자",
       content: tableRef.current[2].value,
       file: tableRef.current[1].value,
-      date: `2023-09-11`,
+      date: `${year}-${month}-${day}`,
     };
-    trigger.mutate(data);
+    mutateAsync(data);
   };
 
   return (
