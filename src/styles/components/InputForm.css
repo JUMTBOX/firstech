@@ -24,7 +24,7 @@
 }
 .inputForm_container form button {
   width: 12em;
-  height: 3em;
+  height: 2.5em;
   border: none;
   color: white;
   background-color: #3498db;
@@ -34,10 +34,6 @@
   margin-right: 1em;
   font-size: 0.9em;
   font-weight: 500;
-}
-.inputForm_container form button:focus {
-  border: none;
-  outline: none;
 }
 .inputForm_container form button:hover {
   cursor: pointer;

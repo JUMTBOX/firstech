@@ -44,8 +44,14 @@ export const handlers = [
 
   rest.post("/text/history", (req, res, ctx) => {
     let data = req.body.text;
-    history.push(data);
+    history.push(data.replaceAll("\n", ""));
     return res(ctx.status(201));
+  }),
+
+  rest.post("/text/history/search", (req, res, ctx) => {
+    let str = req.body.str;
+    let data = history.filter((el) => el.includes(str));
+    return res(ctx.json(data));
   }),
 
   rest.delete("/text/history", (req, res, ctx) => {

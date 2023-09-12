@@ -46,6 +46,16 @@ const deleteHistory = async (): Promise<number> => {
   const { status } = await axios.delete("/text/history");
   return status;
 };
+
+const searchHistory = async (str: string): Promise<string[]> => {
+  const res = await axios.post("/text/history/search", {
+    str: str,
+  });
+  let result = res.data;
+  console.log(result);
+
+  return result;
+};
 //////////////////////////////////////////////////////////
 
 const useGetFakeData = (): UseQueryResult<Notice[]> => {
@@ -63,4 +73,5 @@ export {
   useGetHistory,
   postHistory,
   deleteHistory,
+  searchHistory,
 };

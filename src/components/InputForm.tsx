@@ -23,6 +23,7 @@ export default function InputForm() {
     if (textRef.current !== null) {
       setResult(`${textRef.current?.value} 변환`);
       mutateAsync(`${textRef.current?.value}변환 `);
+      textRef.current.value = "";
     }
   };
 
@@ -30,9 +31,6 @@ export default function InputForm() {
   const onKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter") {
       handleSubmit();
-      if (textRef.current !== null) {
-        textRef.current.value = "";
-      }
     }
   };
 

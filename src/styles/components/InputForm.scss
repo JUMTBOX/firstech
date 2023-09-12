@@ -22,7 +22,7 @@
     }
     button {
       width: 12em;
-      height: 3em;
+      height: 2.5em;
       border: none;
       color: white;
       background-color: #3498db;
@@ -32,10 +32,6 @@
       margin-right: 1em;
       font-size: 0.9em;
       font-weight: 500;
-      &:focus {
-        border: none;
-        outline: none;
-      }
       &:hover {
         cursor: pointer;
         background-color: #2c80b9;
