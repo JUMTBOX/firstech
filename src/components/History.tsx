@@ -9,7 +9,7 @@ export default function History() {
   const { data } = useGetHistory();
   const queryClient = useQueryClient();
 
-  const deleteTrigger = useMutation(deleteHistory, {
+  const { mutateAsync } = useMutation(deleteHistory, {
     onSuccess: () => {
       queryClient.invalidateQueries(["history"]);
     },
@@ -23,10 +23,7 @@ export default function History() {
           <button>검색</button>
         </div>
         <div className="history_wrapper">
-          <button
-            className="clearHistory_btn"
-            onClick={() => deleteTrigger.mutateAsync()}
-          >
+          <button className="clearHistory_btn" onClick={() => mutateAsync()}>
             <BsTrash size={"1.2em"} />
           </button>
           <div className="history_content">
