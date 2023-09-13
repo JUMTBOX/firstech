@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
-import { async } from "q";
 
 export interface Notice {
   article_id: number | null;
@@ -13,6 +12,11 @@ export interface Notice {
 const getFakeData = async (): Promise<Notice[]> => {
   const { data } = await axios.get("/notices");
 
+  return data;
+};
+
+const getOneFakeData = async (id: string): Promise<Notice> => {
+  const { data } = await axios.get(`/notices/${id}`);
   return data;
 };
 
@@ -62,12 +66,17 @@ const useGetFakeData = (): UseQueryResult<Notice[]> => {
   return useQuery(["fake"], () => getFakeData());
 };
 
+const useGetOneFakeData = (id: any): UseQueryResult<Notice> => {
+  return useQuery(["fakeOne"], () => getOneFakeData(id));
+};
+
 const useGetHistory = (): UseQueryResult<string[]> => {
   return useQuery(["history"], () => getHisTory());
 };
 
 export {
   useGetFakeData,
+  useGetOneFakeData,
   postFakeData,
   deleteFakeData,
   useGetHistory,

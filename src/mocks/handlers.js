@@ -26,6 +26,14 @@ export const handlers = [
     return res(ctx.json(fakeData));
   }),
 
+  rest.get("/notices/:id", (req, res, ctx) => {
+    let id = Number(req.params.id);
+    console.log(id);
+    let data = fakeData.filter((el) => el.article_id === id)[0];
+    console.log(data);
+    return res(ctx.json(data));
+  }),
+
   rest.post("/notices", (req, res, ctx) => {
     fakeData.push(req.body.data);
     return res(ctx.status(201));

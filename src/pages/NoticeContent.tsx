@@ -1,6 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { useGetOneFakeData } from "../requestHooks/request";
+import { useQueryClient } from "@tanstack/react-query";
 export default function NoticeContent() {
   const [isModifiable, setIsModifiable] = useState<boolean>(true);
+  const params = useParams();
+  const { data } = useGetOneFakeData(params.id);
+
+  const queryClient = useQueryClient();
 
   const handleModify = () => {
     setIsModifiable((cur) => false);
@@ -15,7 +22,11 @@ export default function NoticeContent() {
               제목
             </td>
             <td width={"70%"}>
-              <textarea className="title_input" readOnly={isModifiable} />
+              <textarea
+                className="title_input"
+                readOnly={isModifiable}
+                defaultValue={data?.title}
+              />
             </td>
           </tr>
           <tr style={{ height: "10%" }}>
@@ -42,6 +53,7 @@ export default function NoticeContent() {
               <textarea
                 style={{ width: "90%", height: "85%", resize: "none" }}
                 readOnly={isModifiable}
+                defaultValue={data?.content}
               />
             </td>
           </tr>
