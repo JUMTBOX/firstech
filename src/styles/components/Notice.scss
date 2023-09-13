@@ -26,6 +26,8 @@
       display: flex;
       justify-content: flex-end;
       width: 90%;
+      height: fit-content;
+      min-height: 1.7em;
       gap: 1.25em;
       button {
         width: 8%;

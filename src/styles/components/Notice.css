@@ -28,6 +28,9 @@
   display: flex;
   justify-content: flex-end;
   width: 90%;
+  height: -moz-fit-content;
+  height: fit-content;
+  min-height: 1.7em;
   gap: 1.25em;
 }
 .notice_container .notice_wrapper .btn_wrapper button {
