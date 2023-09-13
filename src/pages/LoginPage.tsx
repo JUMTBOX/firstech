@@ -30,8 +30,7 @@ export default function LoginPage() {
   };
 
   useEffect(() => {
-    if (isLogin) {
-      window.alert("이미 로그인 되었습니다");
+    if (isLogin === true) {
       navigate("/");
     }
     // postUser();
