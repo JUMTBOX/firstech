@@ -9,6 +9,12 @@ export interface Notice {
   date: string;
 }
 
+export interface User {
+  user_id: string;
+  passwd: string;
+  flag: string;
+}
+
 const getFakeData = async (): Promise<Notice[]> => {
   const { data } = await axios.get("/notices");
 
@@ -60,6 +66,14 @@ const searchHistory = async (str: string): Promise<string[]> => {
 
   return result;
 };
+
+const postUser = async (): Promise<User> => {
+  const { data } = await axios.post("http://localhost:8080/user");
+
+  console.log(data);
+  return data;
+};
+
 //////////////////////////////////////////////////////////
 
 const useGetFakeData = (): UseQueryResult<Notice[]> => {
@@ -67,7 +81,11 @@ const useGetFakeData = (): UseQueryResult<Notice[]> => {
 };
 
 const useGetOneFakeData = (id: any): UseQueryResult<Notice> => {
-  return useQuery(["fakeOne"], () => getOneFakeData(id));
+  return useQuery(["fakeOne"], () => getOneFakeData(id), {
+    refetchOnMount: true,
+    refetchOnReconnect: true,
+    retry: 3,
+  });
 };
 
 const useGetHistory = (): UseQueryResult<string[]> => {
@@ -77,10 +95,12 @@ const useGetHistory = (): UseQueryResult<string[]> => {
 export {
   useGetFakeData,
   useGetOneFakeData,
+  getOneFakeData,
   postFakeData,
   deleteFakeData,
   useGetHistory,
   postHistory,
   deleteHistory,
   searchHistory,
+  postUser,
 };

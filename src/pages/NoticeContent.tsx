@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router";
 import { useGetOneFakeData } from "../requestHooks/request";
 import { useQueryClient } from "@tanstack/react-query";
+import { BsTrash } from "react-icons/bs";
 export default function NoticeContent() {
   const [isModifiable, setIsModifiable] = useState<boolean>(true);
+  const tableRef = useRef<HTMLInputElement>(null);
   const params = useParams();
   const { data } = useGetOneFakeData(params.id);
 
@@ -12,6 +14,17 @@ export default function NoticeContent() {
   const handleModify = () => {
     setIsModifiable((cur) => false);
   };
+  const deleteFile = () => {
+    if (tableRef.current !== null) {
+      tableRef.current.value = "";
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      queryClient.removeQueries(["fakeOne"]);
+    };
+  }, []);
 
   return (
     <div className="writeNotice_container">
@@ -44,7 +57,17 @@ export default function NoticeContent() {
                 justifyContent: "space-around",
               }}
             >
-              <input type="file" className="file_input" readOnly={true} />
+              <input
+                type="file"
+                className="file_input"
+                readOnly={true}
+                ref={tableRef}
+              />
+              {!isModifiable ? (
+                <button className="delfile_btn" onClick={deleteFile}>
+                  <BsTrash size={"1.5em"} />
+                </button>
+              ) : null}
             </td>
           </tr>
           <tr style={{ height: "65%" }}>

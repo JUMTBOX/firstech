@@ -13,23 +13,21 @@
 }
 .writeNotice_container table .title_input {
   width: 90%;
-  height: 50%;
-  line-height: 1.2em;
-  padding: 0.2em 0.8em;
+  max-height: 50%;
+  line-height: 1em;
+  padding: 0.5em 0.8em;
   box-sizing: border-box;
+  display: table-cell;
+  vertical-align: middle;
   resize: none;
 }
 .writeNotice_container table .file_input {
   width: 80%;
   height: 50%;
+  display: table-cell;
 }
 .writeNotice_container table .file_input:focus {
   outline: none;
-}
-.writeNotice_container table .uploadfile_btn {
-  width: 15%;
-  height: 50%;
-  font-size: 0.5em;
 }
 .writeNotice_container table .delfile_btn {
   display: flex;
@@ -40,6 +38,12 @@
 }
 .writeNotice_container table .delfile_btn:hover {
   cursor: pointer;
+}
+.writeNotice_container table .content_input {
+  display: table-cell;
+  width: 90%;
+  height: 85%;
+  resize: none;
 }
 .writeNotice_container .btn_wrapper {
   display: flex;

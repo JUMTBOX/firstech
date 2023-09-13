@@ -2,8 +2,8 @@ import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { BsTrash } from "react-icons/bs";
 import { postFakeData } from "../requestHooks/request";
-import "../styles/pages/WriteNoticePage.css";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import "../styles/pages/WriteNoticePage.css";
 
 export default function WriteNoticePage() {
   const tableRef = useRef<any>([]);
@@ -81,7 +81,7 @@ export default function WriteNoticePage() {
             <td style={{ backgroundColor: "#d1cfcf" }}>내용</td>
             <td>
               <textarea
-                style={{ width: "90%", height: "85%", resize: "none" }}
+                className="content_input"
                 ref={(el) => (tableRef.current[2] = el)}
               />
             </td>

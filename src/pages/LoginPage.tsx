@@ -1,5 +1,6 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { BsFillPersonCheckFill, BsKey } from "react-icons/bs";
+import { postUser } from "../requestHooks/request";
 import "../styles/pages/LoginPage.css";
 
 export default function LoginPage() {
@@ -14,6 +15,10 @@ export default function LoginPage() {
     }
     //로그인 비동기처리 로직
   };
+
+  useEffect(() => {
+    postUser();
+  }, []);
 
   return (
     <div className="login_container">

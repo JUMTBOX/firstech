@@ -11,24 +11,22 @@
     height: 80%;
     .title_input {
       width: 90%;
-      height: 50%;
-      line-height: 1.2em;
-      padding: 0.2em 0.8em;
+      max-height: 50%;
+      line-height: 1em;
+      padding: 0.5em 0.8em;
       box-sizing: border-box;
+      display: table-cell;
+      vertical-align: middle;
+      // text-align: center;
       resize: none;
     }
     .file_input {
       width: 80%;
       height: 50%;
-
+      display: table-cell;
       &:focus {
         outline: none;
       }
-    }
-    .uploadfile_btn {
-      width: 15%;
-      height: 50%;
-      font-size: 0.5em;
     }
     .delfile_btn {
       display: flex;
@@ -39,6 +37,12 @@
       &:hover {
         cursor: pointer;
       }
+    }
+    .content_input {
+      display: table-cell;
+      width: 90%;
+      height: 85%;
+      resize: none;
     }
   }
   .btn_wrapper {

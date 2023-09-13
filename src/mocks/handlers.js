@@ -28,9 +28,8 @@ export const handlers = [
 
   rest.get("/notices/:id", (req, res, ctx) => {
     let id = Number(req.params.id);
-    console.log(id);
     let data = fakeData.filter((el) => el.article_id === id)[0];
-    console.log(data);
+    // console.log(data);
     return res(ctx.json(data));
   }),
 
