@@ -1,9 +1,12 @@
 import React, { useRef } from "react";
+import { useRecoilValue } from "recoil";
+import { loginState } from "../recoil/atoms";
 import { Link, useNavigate } from "react-router-dom";
 import { Notice, deleteFakeData } from "../requestHooks/request";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export default function Table({ data }: { data: Notice[] }) {
+  const isLogin = useRecoilValue(loginState);
   const checkRef = useRef<any>([]);
   const navigate = useNavigate();
 
@@ -83,15 +86,19 @@ export default function Table({ data }: { data: Notice[] }) {
         </tbody>
       </table>
       <div className="btn_wrapper">
-        <button
-          className="notice_subBtn"
-          onClick={() => navigate("/notice/write")}
-        >
-          등록
-        </button>
-        <button className="notice_delBtn" onClick={handleDelete}>
-          삭제
-        </button>
+        {isLogin ? (
+          <>
+            <button
+              className="notice_subBtn"
+              onClick={() => navigate("/notice/write")}
+            >
+              등록
+            </button>
+            <button className="notice_delBtn" onClick={handleDelete}>
+              삭제
+            </button>
+          </>
+        ) : null}
       </div>
     </>
   );

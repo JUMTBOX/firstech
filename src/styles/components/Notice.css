@@ -20,6 +20,8 @@
   line-height: 2.5em;
 }
 .notice_container .notice_wrapper table a {
+  font-weight: 600;
+  color: black;
   text-decoration: none;
 }
 .notice_container .notice_wrapper .btn_wrapper {

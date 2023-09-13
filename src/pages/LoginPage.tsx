@@ -1,24 +1,41 @@
 import React, { useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { BsFillPersonCheckFill, BsKey } from "react-icons/bs";
-import { postUser } from "../requestHooks/request";
+import { userLogin } from "../requestHooks/request";
+import { useMutation } from "@tanstack/react-query";
+import { useRecoilState } from "recoil";
+import { loginState } from "../recoil/atoms";
 import "../styles/pages/LoginPage.css";
 
 export default function LoginPage() {
+  const [isLogin, setIsLogin] = useRecoilState(loginState);
   const inputRef = useRef<any>([]);
+  const navigate = useNavigate();
+
+  const { mutate } = useMutation(userLogin, {
+    onSuccess: () => {
+      setIsLogin((cur) => true);
+    },
+  });
 
   const handleLogin = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (inputRef.current !== null) {
-      const id = inputRef.current[0].value;
-      const password = inputRef.current[1].value;
-      window.alert(`로그인 요청 보냄, ${id}, ${password}`);
+      let user = {
+        user_id: inputRef.current[0].value,
+        passwd: inputRef.current[1].value,
+      };
+      mutate(user);
     }
-    //로그인 비동기처리 로직
   };
 
   useEffect(() => {
-    postUser();
-  }, []);
+    if (isLogin) {
+      window.alert("이미 로그인 되었습니다");
+      navigate("/");
+    }
+    // postUser();
+  }, [isLogin]);
 
   return (
     <div className="login_container">
