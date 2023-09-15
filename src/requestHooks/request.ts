@@ -88,6 +88,7 @@ const userLogin = async (data: User): Promise<number> => {
   });
   return status;
 };
+
 // const postUser = async (): Promise<User> => {
 //   const { data } = await axios.post("http://localhost:8080/user");
 
@@ -98,12 +99,14 @@ const userLogin = async (data: User): Promise<number> => {
 //////////////////////////////////////////////////////////
 
 const useGetFakeData = (): UseQueryResult<Notice[]> => {
-  return useQuery(["fake"], () => getFakeData());
+  return useQuery(["fake"], () => getFakeData(), {
+    staleTime: 300000,
+  });
 };
 
 const useGetOneFakeData = (id: any): UseQueryResult<Notice> => {
   return useQuery(["fakeOne"], () => getOneFakeData(id), {
-    refetchOnMount: true,
+    staleTime: 300000,
     refetchOnReconnect: true,
     retry: 3,
   });

@@ -4,12 +4,16 @@ import { BsTrash } from "react-icons/bs";
 import { postFakeData } from "../requestHooks/request";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import "../styles/pages/WriteNoticePage.css";
+import Loader from "../components/Loader";
 
 export default function WriteNoticePage() {
   const tableRef = useRef<any>([]);
   const navigate = useNavigate();
+
+  //react-query hook
   const queryClient = useQueryClient();
-  const { mutateAsync } = useMutation(postFakeData, {
+  const { mutateAsync, isLoading } = useMutation(postFakeData, {
+    onMutate: () => {},
     onSuccess: () => {
       queryClient.invalidateQueries(["fake"]);
       navigate("/notice");

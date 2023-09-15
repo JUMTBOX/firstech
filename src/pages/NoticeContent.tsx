@@ -9,14 +9,19 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRecoilValue } from "recoil";
 import { loginState } from "../recoil/atoms";
 import { BsTrash } from "react-icons/bs";
+import Loader from "../components/Loader";
+
 export default function NoticeContent() {
-  const isLogin = useRecoilValue(loginState);
   const [isModifiable, setIsModifiable] = useState<boolean>(false);
   const tableRef = useRef<any>([]);
   const params = useParams();
-  const { data } = useGetOneFakeData(params.id);
 
+  //recoil hook
+  const isLogin = useRecoilValue(loginState);
+
+  //react-query hook
   const queryClient = useQueryClient();
+  const { data, isLoading } = useGetOneFakeData(params.id);
 
   const { mutateAsync } = useMutation(
     (arg: Mod) => modifyFakeData(arg, params.id),
@@ -45,10 +50,23 @@ export default function NoticeContent() {
   };
 
   useEffect(() => {
+    // 컴포넌트가 언마운트 될 때 "fakeOne"쿼리를 삭제
+    // invalidateQueries를 사용하면 원하던 결과가 안나옴
+    // <짐작>
+    // 컴포넌트가 언마운트 되면서 stale상태로 만들면, 곧바로 refetching하기 때문에
+    // useGetOneFakeData에 인자로 들어가는 params는 처음 마운트 시킬 때의 params와 똑같다
+    // 따라서 캐싱되어 있는 공지 글 데이터는 stale 시키기 전 상태와 같다
+    // 그래서 다른 글 제목을 클릭하여, 다시 이 컴포넌트가 마운트 되고 params가 바뀌더라도
+    // invalidate 시키고 refetching하는 시점은 지금이 아니기 때문에 캐싱된 데이터를 사용한다
+    // 그래서 params가 바뀌어도 화면에 지난 글과 동일한 데이터가 나온다.
     return () => {
       queryClient.removeQueries(["fakeOne"]);
     };
   }, []);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <div className="writeNotice_container">
