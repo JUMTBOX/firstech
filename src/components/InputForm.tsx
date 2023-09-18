@@ -44,7 +44,7 @@ export default function InputForm() {
         <button onClick={handleSubmit}>변환</button>
       </div>
       <div className="inputForm_contentBox">
-        <textarea defaultValue={result} />
+        <textarea defaultValue={result} readOnly={true} />
       </div>
     </div>
   );

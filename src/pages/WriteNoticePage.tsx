@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { AiOutlinePlusCircle } from "react-icons/ai";
 import { BsTrash } from "react-icons/bs";
 import { postFakeData } from "../requestHooks/request";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -70,15 +71,20 @@ export default function WriteNoticePage() {
                 height: "100%",
                 border: "none",
                 alignItems: "center",
-                justifyContent: "space-around",
+                justifyContent: "center",
+                gap: "2em",
               }}
             >
-              <input
-                type="file"
-                className="file_input"
-                ref={(el) => (tableRef.current[1] = el)}
-                readOnly={true}
-              />
+              <div className="file_input_wrapper">
+                <AiOutlinePlusCircle />
+                <input
+                  type="file"
+                  multiple
+                  className="file_input"
+                  readOnly={true}
+                  ref={(el) => (tableRef.current[1] = el)}
+                />
+              </div>
               <button className="delfile_btn" onClick={deleteFile}>
                 <BsTrash size={"1.5em"} />
               </button>

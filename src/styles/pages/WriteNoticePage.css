@@ -21,13 +21,20 @@
   vertical-align: middle;
   resize: none;
 }
-.writeNotice_container table .file_input {
-  width: 80%;
-  height: 50%;
-  display: table-cell;
+.writeNotice_container table .file_input_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 70%;
+  border: 2px dotted black;
+  border-radius: 8px;
 }
-.writeNotice_container table .file_input:focus {
-  outline: none;
+.writeNotice_container table .file_input_wrapper span:hover {
+  cursor: pointer;
+}
+.writeNotice_container table .file_input_wrapper .file_input {
+  display: none;
 }
 .writeNotice_container table .delfile_btn {
   display: flex;

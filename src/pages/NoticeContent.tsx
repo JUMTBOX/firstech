@@ -8,6 +8,7 @@ import {
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRecoilValue } from "recoil";
 import { loginState } from "../recoil/atoms";
+import { AiOutlinePlusCircle } from "react-icons/ai";
 import { BsTrash } from "react-icons/bs";
 import Loader from "../components/Loader";
 
@@ -33,7 +34,17 @@ export default function NoticeContent() {
       },
     }
   );
+  //파일 업로드
+  const handleUpload = () => {
+    if (tableRef.current !== null) {
+      tableRef.current[1].click();
+    }
+  };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.files?.[0].name);
+  };
 
+  //수정 후 제출
   const handleModify = () => {
     if (tableRef.current !== null) {
       let data: Mod = {
@@ -43,7 +54,7 @@ export default function NoticeContent() {
       mutateAsync(data);
     }
   };
-
+  //첨부 파일 지우기
   const deleteFile = () => {
     if (tableRef.current !== null) {
       tableRef.current[1].value = "";
@@ -98,17 +109,24 @@ export default function NoticeContent() {
                 height: "100%",
                 border: "none",
                 alignItems: "center",
-                justifyContent: "space-around",
+                justifyContent: "center",
+                gap: "2em",
               }}
             >
               {isModifiable ? (
-                <input
-                  type="file"
-                  multiple
-                  className="file_input"
-                  readOnly={true}
-                  ref={(el) => (tableRef.current[1] = el)}
-                />
+                <div className="file_input_wrapper">
+                  <span onClick={handleUpload}>
+                    <AiOutlinePlusCircle size={"1.2em"} />
+                  </span>
+                  <input
+                    type="file"
+                    multiple
+                    className="file_input"
+                    onChange={handleChange}
+                    ref={(el) => (tableRef.current[1] = el)}
+                    readOnly
+                  />
+                </div>
               ) : (
                 <input type="text" value={"파일"} readOnly />
               )}
@@ -150,13 +168,15 @@ export default function NoticeContent() {
             수정
           </button>
         ) : null}
-        <button
-          className="noticeWrite_quitBtn"
-          id="to_list"
-          onClick={() => navigate("/notice")}
-        >
-          목록으로
-        </button>
+        {isModifiable ? null : (
+          <button
+            className="noticeWrite_quitBtn"
+            id="to_list"
+            onClick={() => navigate("/notice")}
+          >
+            목록으로
+          </button>
+        )}
       </div>
     </div>
   );

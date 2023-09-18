@@ -17,15 +17,21 @@
       box-sizing: border-box;
       display: table-cell;
       vertical-align: middle;
-      // text-align: center;
       resize: none;
     }
-    .file_input {
-      width: 80%;
-      height: 50%;
-      display: table-cell;
-      &:focus {
-        outline: none;
+    .file_input_wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 60%;
+      height: 70%;
+      border: 2px dotted black;
+      border-radius: 8px;
+      span:hover {
+        cursor: pointer;
+      }
+      .file_input {
+        display: none;
       }
     }
     .delfile_btn {
