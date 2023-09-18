@@ -4,8 +4,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import "../styles/components/InputForm.css";
 
 export default function InputForm() {
-  const [result, setResult] = useState<string>("");
-  const textRef = useRef<HTMLTextAreaElement>(null);
+  const [result, setResult] = useState<string>();
+  const textRef = useRef<HTMLInputElement>(null);
 
   const queryClient = useQueryClient();
 
@@ -15,20 +15,23 @@ export default function InputForm() {
     },
   });
 
-  const handleSubmit = (e?: React.FormEvent<HTMLButtonElement>) => {
-    if (e !== undefined) {
-      e.preventDefault();
-    }
-    console.log("실행됨");
+  const handleSubmit = () => {
+    const emptyRegExp = /\s/g;
     if (textRef.current !== null) {
-      setResult(`${textRef.current?.value} 변환`);
-      mutateAsync(`${textRef.current?.value}변환 `);
-      textRef.current.value = "";
+      if (
+        //input이 빈값이면 실행 안됨
+        emptyRegExp.test(textRef.current.value) !== true &&
+        textRef.current.value !== ""
+      ) {
+        setResult(`${textRef.current?.value} 변환`);
+        mutateAsync(`${textRef.current?.value} 변환 `);
+        textRef.current.value = "";
+      }
     }
   };
 
   //키보드 눌러도 제출
-  const onKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       handleSubmit();
     }
@@ -36,10 +39,10 @@ export default function InputForm() {
 
   return (
     <div className="inputForm_container">
-      <form action="/">
-        <textarea ref={textRef} onKeyDown={onKeyDown} />
+      <div className="form">
+        <input type="text" ref={textRef} onKeyDown={onKeyDown} />
         <button onClick={handleSubmit}>변환</button>
-      </form>
+      </div>
       <div className="inputForm_contentBox">
         <textarea defaultValue={result} />
       </div>

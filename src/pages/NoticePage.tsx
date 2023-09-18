@@ -4,7 +4,7 @@ import { UseQueryResult } from "@tanstack/react-query";
 import Table from "../components/Table";
 import "../styles/components/Notice.css";
 
-export default function NoticePage() {
+const NoticePage = () => {
   const { data }: UseQueryResult<Notice[]> = useGetFakeData();
 
   return (
@@ -14,4 +14,6 @@ export default function NoticePage() {
       </div>
     </div>
   );
-}
+};
+
+export default NoticePage;

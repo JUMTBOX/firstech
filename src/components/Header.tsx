@@ -4,8 +4,8 @@ import { FiLogOut } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
 import { useRecoilState } from "recoil";
 import { loginState } from "../recoil/atoms";
-import "../styles/components/Header.css";
 import { Link } from "react-router-dom";
+import "../styles/components/Header.css";
 
 export default function Header() {
   const [isLogin, setIsLogin] = useRecoilState(loginState);

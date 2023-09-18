@@ -29,10 +29,20 @@ export default function History() {
   });
 
   const handleSearch = () => {
+    const emptyRegExp = /\s/g;
     if (searchRef.current !== null) {
       let str = searchRef.current.value;
-      setIsSearched((cur) => true);
-      searchTrigger.mutateAsync(str);
+      //검색 input이 빈 값이면 실행 안됨
+      if (emptyRegExp.test(str) !== true && str !== "") {
+        setIsSearched((cur) => true);
+        searchTrigger.mutateAsync(str);
+      }
+    }
+  };
+
+  const onkeySearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleSearch();
     }
   };
 
@@ -42,11 +52,12 @@ export default function History() {
     }
     setIsSearched((cur) => false);
   };
+
   return (
     <>
       <div className="history_container" ref={historyRef}>
         <div className="searchInput_wrapper">
-          <input type="text" ref={searchRef} />
+          <input type="text" ref={searchRef} onKeyDown={onkeySearch} />
           {isSearched ? (
             <button
               className="clearSearchResult_btn"

@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Notice, deleteFakeData } from "../requestHooks/request";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-export default function Table({ data }: { data: Notice[] }) {
+const Table = ({ data }: { data: Notice[] }) => {
   const isLogin = useRecoilValue(loginState);
   const checkRef = useRef<any>([]);
   const navigate = useNavigate();
@@ -102,4 +102,6 @@ export default function Table({ data }: { data: Notice[] }) {
       </div>
     </>
   );
-}
+};
+
+export default React.memo(Table);

@@ -6,19 +6,22 @@
   flex-direction: column;
   justify-content: center;
   gap: 1em;
-  form {
+  .form {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    gap: 2em;
-    textarea {
+    gap: 1.5em;
+    padding: 0 0.5em;
+    box-sizing: border-box;
+    input {
       width: 90%;
       height: 80%;
       box-sizing: border-box;
       padding: 0.5em 0.6em;
       font-size: 1.2em;
-      resize: none;
+      line-height: 1.2em;
+      overflow-y: hidden;
     }
     button {
       width: 12em;
