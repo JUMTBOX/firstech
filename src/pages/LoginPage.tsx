@@ -5,6 +5,7 @@ import { userLogin } from "../requestHooks/request";
 import { useMutation } from "@tanstack/react-query";
 import { useRecoilState } from "recoil";
 import { loginState } from "../recoil/atoms";
+import { getUser } from "../requestHooks/request";
 import "../styles/pages/LoginPage.css";
 
 export default function LoginPage() {
@@ -33,7 +34,7 @@ export default function LoginPage() {
     if (isLogin === true) {
       navigate("/");
     }
-    // postUser();
+    getUser();
   }, [isLogin]);
 
   return (

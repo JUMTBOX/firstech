@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { BsTrash } from "react-icons/bs";
 import { postFakeData } from "../requestHooks/request";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import "../styles/pages/WriteNoticePage.css";
 import Loader from "../components/Loader";
+import "../styles/pages/WriteNoticePage.css";
 
 export default function WriteNoticePage() {
   const tableRef = useRef<any>([]);
@@ -13,7 +13,6 @@ export default function WriteNoticePage() {
   //react-query hook
   const queryClient = useQueryClient();
   const { mutateAsync, isLoading } = useMutation(postFakeData, {
-    onMutate: () => {},
     onSuccess: () => {
       queryClient.invalidateQueries(["fake"]);
       navigate("/notice");
@@ -39,6 +38,10 @@ export default function WriteNoticePage() {
     };
     mutateAsync(data);
   };
+
+  if (isLoading === true) {
+    return <Loader />;
+  }
 
   return (
     <div className="writeNotice_container">

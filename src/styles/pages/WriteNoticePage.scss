@@ -52,7 +52,8 @@
     gap: 1.25em;
     button {
       width: 8%;
-      height: 1.7em;
+      height: 100%;
+      padding: 0.2em 0;
       font-size: 1em;
       font-weight: 500;
       border: none;
@@ -68,6 +69,9 @@
     }
     .noticeWrite_quitBtn {
       background-color: #bcbcbc;
+    }
+    #to_list {
+      font-size: 0.9em;
     }
   }
 }

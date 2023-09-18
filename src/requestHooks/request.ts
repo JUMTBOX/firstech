@@ -48,6 +48,7 @@ const deleteFakeData = async (data: string): Promise<number> => {
   });
   return status;
 };
+
 //전체 히스토리 조회
 const getHisTory = async (): Promise<string[]> => {
   const { data } = await axios.get("/text/history");
@@ -89,12 +90,12 @@ const userLogin = async (data: User): Promise<number> => {
   return status;
 };
 
-// const postUser = async (): Promise<User> => {
-//   const { data } = await axios.post("http://localhost:8080/user");
+const getUser = async (): Promise<User> => {
+  const { data } = await axios.get("http://172.30.1.84:8080/user");
 
-//   console.log(data);
-//   return data;
-// };
+  console.log(data);
+  return data;
+};
 
 //////////////////////////////////////////////////////////
 
@@ -126,7 +127,7 @@ export {
   postHistory,
   deleteHistory,
   searchHistory,
-  // postUser,
   modifyFakeData,
   userLogin,
+  getUser,
 };

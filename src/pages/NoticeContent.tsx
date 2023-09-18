@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import {
   useGetOneFakeData,
   modifyFakeData,
@@ -15,6 +15,7 @@ export default function NoticeContent() {
   const [isModifiable, setIsModifiable] = useState<boolean>(false);
   const tableRef = useRef<any>([]);
   const params = useParams();
+  const navigate = useNavigate();
 
   //recoil hook
   const isLogin = useRecoilValue(loginState);
@@ -149,6 +150,13 @@ export default function NoticeContent() {
             수정
           </button>
         ) : null}
+        <button
+          className="noticeWrite_quitBtn"
+          id="to_list"
+          onClick={() => navigate("/notice")}
+        >
+          목록으로
+        </button>
       </div>
     </div>
   );

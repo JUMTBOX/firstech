@@ -53,7 +53,8 @@
 }
 .writeNotice_container .btn_wrapper button {
   width: 8%;
-  height: 1.7em;
+  height: 100%;
+  padding: 0.2em 0;
   font-size: 1em;
   font-weight: 500;
   border: none;
@@ -69,4 +70,7 @@
 }
 .writeNotice_container .btn_wrapper .noticeWrite_quitBtn {
   background-color: #bcbcbc;
+}
+.writeNotice_container .btn_wrapper #to_list {
+  font-size: 0.9em;
 }/*# sourceMappingURL=WriteNoticePage.css.map */
