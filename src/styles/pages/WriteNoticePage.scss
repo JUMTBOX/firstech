@@ -11,13 +11,18 @@
     height: 80%;
     .title_input {
       width: 90%;
-      max-height: 50%;
+      max-height: 80%;
       line-height: 1em;
       padding: 0.5em 0.8em;
       box-sizing: border-box;
       display: table-cell;
       vertical-align: middle;
-      resize: none;
+      &:focus {
+        outline: none;
+      }
+      &:disabled {
+        background-color: white;
+      }
     }
     .file_input_wrapper {
       display: flex;
@@ -48,7 +53,12 @@
       display: table-cell;
       width: 90%;
       height: 85%;
-      resize: none;
+      &:focus {
+        outline: none;
+      }
+      &:disabled {
+        background-color: white;
+      }
     }
   }
   .btn_wrapper {

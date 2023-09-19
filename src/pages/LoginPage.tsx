@@ -34,7 +34,7 @@ export default function LoginPage() {
     if (isLogin === true) {
       navigate("/");
     }
-    getUser();
+    // getUser();
   }, [isLogin]);
 
   return (

@@ -14,7 +14,7 @@ export default function Header() {
     <div className="header_container">
       <div className="headerwrapper">
         <div className="logo">
-          <Link to={"/"}>
+          <Link to="/">
             <p>Text Trade Tool</p>
           </Link>
         </div>

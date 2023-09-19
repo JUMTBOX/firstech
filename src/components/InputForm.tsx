@@ -40,10 +40,14 @@ export default function InputForm() {
   return (
     <div className="inputForm_container">
       <div className="form">
-        <input type="text" ref={textRef} onKeyDown={onKeyDown} />
-        <button onClick={handleSubmit}>변환</button>
+        <div className="form_wrapper">
+          <input type="text" ref={textRef} onKeyDown={onKeyDown} />
+          <div></div>
+          <button onClick={handleSubmit}>변환</button>
+        </div>
       </div>
       <div className="inputForm_contentBox">
+        <div className="empty_space"></div>
         <textarea defaultValue={result} readOnly={true} />
       </div>
     </div>

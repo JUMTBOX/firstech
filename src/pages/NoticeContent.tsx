@@ -14,7 +14,9 @@ import Loader from "../components/Loader";
 
 export default function NoticeContent() {
   const [isModifiable, setIsModifiable] = useState<boolean>(false);
+  const [isFile, setIsFile] = useState<string>("");
   const tableRef = useRef<any>([]);
+  const spanRef = useRef<HTMLSpanElement>(null);
   const params = useParams();
   const navigate = useNavigate();
 
@@ -40,8 +42,11 @@ export default function NoticeContent() {
       tableRef.current[1].click();
     }
   };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.files?.[0].name);
+    if (e.target.files !== null && e.target.files?.[0].name !== null) {
+      setIsFile(e.target.files?.[0].name);
+    }
   };
 
   //수정 후 제출
@@ -59,6 +64,7 @@ export default function NoticeContent() {
     if (tableRef.current !== null) {
       tableRef.current[1].value = "";
     }
+    setIsFile((cur) => "");
   };
 
   useEffect(() => {
@@ -89,9 +95,9 @@ export default function NoticeContent() {
               제목
             </td>
             <td width={"70%"}>
-              <textarea
+              <input
                 className="title_input"
-                readOnly={!isModifiable}
+                disabled={!isModifiable}
                 defaultValue={data?.title}
                 ref={(el) => (tableRef.current[0] = el)}
               />
@@ -115,8 +121,12 @@ export default function NoticeContent() {
             >
               {isModifiable ? (
                 <div className="file_input_wrapper">
-                  <span onClick={handleUpload}>
-                    <AiOutlinePlusCircle size={"1.2em"} />
+                  <span onClick={handleUpload} ref={spanRef}>
+                    {isFile === "" ? (
+                      <AiOutlinePlusCircle size={"1.2em"} />
+                    ) : (
+                      isFile
+                    )}
                   </span>
                   <input
                     type="file"
@@ -124,25 +134,25 @@ export default function NoticeContent() {
                     className="file_input"
                     onChange={handleChange}
                     ref={(el) => (tableRef.current[1] = el)}
-                    readOnly
+                    disabled={!isModifiable}
                   />
                 </div>
               ) : (
                 <input type="text" value={"파일"} readOnly />
               )}
-              {isModifiable ? (
+              {isModifiable && (
                 <button className="delfile_btn" onClick={deleteFile}>
                   <BsTrash size={"1.5em"} />
                 </button>
-              ) : null}
+              )}
             </td>
           </tr>
           <tr style={{ height: "65%" }}>
             <td style={{ backgroundColor: "#d1cfcf" }}>내용</td>
             <td>
-              <textarea
+              <input
                 className="content_input"
-                readOnly={!isModifiable}
+                disabled={!isModifiable}
                 defaultValue={data?.content}
                 ref={(el) => (tableRef.current[2] = el)}
               />
@@ -160,15 +170,17 @@ export default function NoticeContent() {
               취소
             </button>
           </>
-        ) : isLogin ? (
-          <button
-            className="noticeWrite_subBtn"
-            onClick={() => setIsModifiable((cur) => true)}
-          >
-            수정
-          </button>
-        ) : null}
-        {isModifiable ? null : (
+        ) : (
+          isLogin && (
+            <button
+              className="noticeWrite_subBtn"
+              onClick={() => setIsModifiable((cur) => true)}
+            >
+              수정
+            </button>
+          )
+        )}
+        {!isModifiable && (
           <button
             className="noticeWrite_quitBtn"
             id="to_list"

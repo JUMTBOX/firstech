@@ -58,6 +58,7 @@ export default function History() {
       <div className="history_container" ref={historyRef}>
         <div className="searchInput_wrapper">
           <input type="text" ref={searchRef} onKeyDown={onkeySearch} />
+          <div></div>
           {isSearched ? (
             <button
               className="clearSearchResult_btn"
@@ -71,12 +72,16 @@ export default function History() {
           </button>
         </div>
         <div className="history_wrapper">
-          <button
-            className="clearHistory_btn"
-            onClick={isSearched ? undefined : () => deleteTrigger.mutateAsync()}
-          >
-            <BsTrash size={"1.2em"} />
-          </button>
+          <div className="clearHistory_btn_wrapper">
+            <button
+              className="clearHistory_btn"
+              onClick={
+                isSearched ? undefined : () => deleteTrigger.mutateAsync()
+              }
+            >
+              <BsTrash size={"1.2em"} />
+            </button>
+          </div>
           <div className="history_content">
             {isSearched
               ? searchResult.map((el, idx) => {
@@ -89,7 +94,7 @@ export default function History() {
               : data?.map((el, idx) => {
                   return (
                     <div key={idx} className="log_item">
-                      <p>{el}</p>
+                      {el}
                     </div>
                   );
                 })}
