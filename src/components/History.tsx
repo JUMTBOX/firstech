@@ -82,12 +82,12 @@ export default function History() {
               <BsTrash size={"1.2em"} />
             </button>
           </div>
-          <div className="history_content">
+          <div className="history_content" style={{ maxHeight: "100%" }}>
             {isSearched
               ? searchResult.map((el, idx) => {
                   return (
                     <div key={idx} className="log_item">
-                      <p>{el}</p>
+                      {el}
                     </div>
                   );
                 })

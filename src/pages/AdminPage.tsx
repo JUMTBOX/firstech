@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
+import Modal from "../components/Modal";
+import { useRecoilState } from "recoil";
+import { modalState } from "../recoil/atoms";
 import "../styles/pages/AdminPage.css";
 
 export default function AdminPage() {
+  const [isOpen, setIsOpen] = useRecoilState(modalState);
+
+  const handleModal = () => {
+    setIsOpen(true);
+  };
+
   return (
     <div className="adminpage_container">
+      {isOpen && <Modal setIsOpen={setIsOpen} />}
       <div className="adminpage_wrapper">
         <span className="adminpage_btn_wrapper">
-          <button>회원 추가</button>
+          <button onClick={handleModal}>회원 추가</button>
         </span>
         <div className="adminpage_content_box">
           <div className="adminpage_content_box_wrapper">
@@ -22,9 +32,9 @@ export default function AdminPage() {
               </div>
               <div className="user_category_item">삭제</div>
             </div>
-            {[1, 2, 3, 4, 5].map((el) => {
+            {[1, 2, 3, 4, 5].map((el, idx) => {
               return (
-                <div className="user">
+                <div className="user" key={idx}>
                   <div className="user_item">item.ID</div>
                   <div className="user_item">item.PW</div>
                   <div className="user_item">item.name</div>

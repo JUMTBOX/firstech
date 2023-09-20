@@ -32,6 +32,7 @@ export default function NoticeContent() {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["fakeOne"]);
+        queryClient.invalidateQueries(["fake"]);
         setIsModifiable((cur) => false);
       },
     }
